@@ -39,23 +39,22 @@ const UserProvider: FC<UserProviderProps> = ({ children }) => {
     const signIn = async (email: string, password: string) => {
         return await login({
             variables: { email, password }
-        }).then((res) => {
-            const loginData = res.data?.login;
+        }).then((res) => {            
+            const loginData = res.data?.signIn;
             if (loginData) {
                 const { token, user } = loginData;
-                if (!user.isApproved) {
-                    toast.success("User not verified!")
-                    return
-                }
+                // if (!user.isApproved) {
+                //     toast.error("User not verified!")
+                //     return
+                // }
                 toast.success("Logged In Successfully")
                 setUser(user)
                 setToken(token)
                 Cookies.set('token', token)
                 Cookies.set('user', JSON.stringify(user))
-                router.push('/admin/dashboard')
+                router.push('/')
                 return
             }
-
         }).catch((e) => {
             toast.error("Failed to login", { icon: <CircleIcon fill='red' className='w-4 h-4' /> })
         })

@@ -10,8 +10,8 @@ interface ProvidersProps {
 const Providers: FC<ProvidersProps> = ({ children }) => {
     return (
         <GraphQlProvider>
+            <Toaster />
             <UserProvider>
-                <Toaster />
                 {children}
             </UserProvider>
         </GraphQlProvider>

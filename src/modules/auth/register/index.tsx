@@ -26,17 +26,13 @@ const RegisterModule: FC<RegisterModuleProps> = () => {
     })
     
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        console.log('data', data);
         register({
             variables: data
-        }).then((res) => {
-            console.log('res', res);
-            
+        }).then(() => {            
             toast.success('registered successfully')
         })
         .catch((e)=>{
-            console.log(e.message);
-            
+            toast.error(e.message);
         })
     };
 
