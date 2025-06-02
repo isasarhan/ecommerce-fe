@@ -1,5 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import GraphQlProvider from './apollo-provider';
+import { Toaster } from 'sonner';
+import UserProvider from './global-data-provider';
 
 interface ProvidersProps {
     children: ReactNode
@@ -8,7 +10,10 @@ interface ProvidersProps {
 const Providers: FC<ProvidersProps> = ({ children }) => {
     return (
         <GraphQlProvider>
-            {children}
+            <UserProvider>
+                <Toaster />
+                {children}
+            </UserProvider>
         </GraphQlProvider>
     );
 }

@@ -11,19 +11,33 @@ import FormInput from '@/components/common/form/input';
 import FormPassword from '@/components/common/form/password';
 import { Button } from '@/components/ui/button';
 import { User } from 'lucide-react';
+import { useMutation } from '@apollo/client';
+import { REGISTER } from '@/gql/auth';
 
 interface RegisterModuleProps { }
 
 const RegisterModule: FC<RegisterModuleProps> = () => {
+    const [register] = useMutation(REGISTER)
     type FormData = z.infer<typeof registerSchema>
 
     const form = useForm<FormData>({
         resolver: zodResolver(registerSchema),
 
     })
-
+    
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-
+        console.log('data', data);
+        register({
+            variables: data
+        }).then((res) => {
+            console.log('res', res);
+            
+            toast.success('registered successfully')
+        })
+        .catch((e)=>{
+            console.log(e.message);
+            
+        })
     };
 
 
@@ -41,7 +55,7 @@ const RegisterModule: FC<RegisterModuleProps> = () => {
                             <div className="grid grid-cols-2 gap-3 items-start" >
                                 <FormInput
                                     control={form.control}
-                                    name="username"
+                                    name="userName"
                                     title="User Name"
                                     placeholder="Enter user name" />
 
@@ -65,16 +79,16 @@ const RegisterModule: FC<RegisterModuleProps> = () => {
                                     placeholder="Enter first name" />
                             </div>
 
-                                <FormInput
-                                    control={form.control}
-                                    name="phone"
-                                    title="Phone"
-                                    placeholder="Enter phone number" />
-                                <FormInput
-                                    control={form.control}
-                                    name="email"
-                                    title="Email"
-                                    placeholder="Enter your email" />
+                            <FormInput
+                                control={form.control}
+                                name="phone"
+                                title="Phone"
+                                placeholder="Enter phone number" />
+                            <FormInput
+                                control={form.control}
+                                name="email"
+                                title="Email"
+                                placeholder="Enter your email" />
 
                             <Button type="submit">Submit</Button>
                         </form>

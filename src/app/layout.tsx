@@ -15,14 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Providers>
-        <body>
+      <body>
+        <Providers>
           <Navbar />
           <main className="p-3">
             {children}
           </main>
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }

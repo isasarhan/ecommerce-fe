@@ -2,7 +2,7 @@ import * as z from 'zod';
 
 export const registerSchema = z
   .object({
-    username: z.string().min(5),
+    userName: z.string().min(5),
     firstName: z.string().optional(),
     lastName: z.string().optional(),
     phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number"),
