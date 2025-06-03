@@ -22,7 +22,6 @@ const RegisterModule: FC<RegisterModuleProps> = () => {
 
     const form = useForm<FormData>({
         resolver: zodResolver(registerSchema),
-
     })
     
     const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -35,7 +34,6 @@ const RegisterModule: FC<RegisterModuleProps> = () => {
             toast.error(e.message);
         })
     };
-
 
     return (
         <div className='flex justify-center'>

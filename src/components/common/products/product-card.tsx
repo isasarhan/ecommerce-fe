@@ -4,12 +4,14 @@ import { Button } from '../../ui/button';
 import { Heart } from 'lucide-react';
 import { Badge } from '../../ui/badge';
 import { IProduct } from '@/types/product';
+import { useAppStore } from '@/store';
 
 interface ProductCardProps {
     product: IProduct
 }
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
+    const { addToCart, cart } = useAppStore()    
     return (
         <div className='bg-white relative w-full'>
             <div className='absolute left-5 top-5'>
@@ -23,7 +25,9 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                     <span className='text-red-500 font-bold'>{product.salePrice}</span>
                 </div>
                 <div className='w-full flex items-center gap-3'>
-                    <Button variant={'outline'} className='rounded-full flex-1'>Quick Add</Button>
+                    <Button variant={'outline'} className='rounded-full flex-1'
+                        onClick={() => addToCart(product, 1)}
+                    >Quick Add</Button>
                     <Button variant={'outline'} className='rounded-full w-10 h-10 hover:bg-red-500 hover:text-white' size={'icon'}><Heart /></Button>
                 </div>
             </section>

@@ -5,6 +5,8 @@ interface SpacerProps {
 }
 
 const Spacer: FC<SpacerProps> = ({ size = 'sm' }) => {
+  console.log('log');
+  
   let paddingClass = '';
 
   switch (size) {

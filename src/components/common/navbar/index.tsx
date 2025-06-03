@@ -10,6 +10,7 @@ import { Menu } from "lucide-react";
 import { data } from "./data";
 import CartSheet from "../cart/cart-sheet";
 import UserMenu from "./user-menu";
+import { useAppStore } from "@/store";
 
 interface NavbarProps { }
 
@@ -35,7 +36,10 @@ const Navbar: FC<NavbarProps> = () => {
                                 {d.label}
                             </Link>
                         ))}
-                        <CartSheet />
+                        <div className="flex gap-5">
+                            <UserMenu />
+                            <CartSheet />
+                        </div>
                     </div>
                 </SheetContent>
             </Sheet>
@@ -51,7 +55,7 @@ const Navbar: FC<NavbarProps> = () => {
                         {d.label}
                     </Link>
                 ))}
-                    <UserMenu/>
+                <UserMenu />
                 <CartSheet />
             </nav>
         </header>

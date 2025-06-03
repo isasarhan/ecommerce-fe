@@ -15,6 +15,7 @@ interface UserProviderProps {
 interface UserContextType {
     user: IUser | null | undefined,
     token: string,
+    isLoggedIn: boolean,
     signIn(email: string, password: string): void
     signOut(): void
 }
@@ -33,13 +34,14 @@ export const useUserContext = () => {
 const UserProvider: FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<IUser | null>()
     const [token, setToken] = useState('')
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [login] = useMutation(SIGNIN)
     const router = useRouter()
 
     const signIn = async (email: string, password: string) => {
         return await login({
             variables: { email, password }
-        }).then((res) => {            
+        }).then((res) => {
             const loginData = res.data?.signIn;
             if (loginData) {
                 const { token, user } = loginData;
@@ -49,6 +51,7 @@ const UserProvider: FC<UserProviderProps> = ({ children }) => {
                 // }
                 toast.success("Logged In Successfully")
                 setUser(user)
+                setIsLoggedIn(true)
                 setToken(token)
                 Cookies.set('token', token)
                 Cookies.set('user', JSON.stringify(user))
@@ -63,8 +66,9 @@ const UserProvider: FC<UserProviderProps> = ({ children }) => {
         Cookies.remove('token')
         Cookies.remove('user')
         setToken('')
-        router.refresh()
         setUser(null)
+        setIsLoggedIn(false)
+        router.refresh()
         return
     }
 
@@ -76,12 +80,13 @@ const UserProvider: FC<UserProviderProps> = ({ children }) => {
                 const parsedUser = JSON.parse(storedUser);
                 setUser(parsedUser)
                 setToken(storedToken)
+                setIsLoggedIn(true)
             }
         }
         retreiveUserInfo()
     }, [token])
     return (
-        <UserContext.Provider value={{ token: token, user: user, signIn, signOut }}>
+        <UserContext.Provider value={{ token, user, isLoggedIn, signIn, signOut }}>
             {children}
         </UserContext.Provider>
     );
