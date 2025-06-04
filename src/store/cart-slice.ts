@@ -1,4 +1,3 @@
-import { ICart } from "@/types/cart"
 import { IProduct } from "@/types/product"
 import { StateCreator } from "zustand"
 
@@ -6,6 +5,7 @@ export interface CartSlice {
     cart: { products: { item: IProduct, quantity: number }[] }
     addToCart: (product: IProduct, quantity: number) => void
     removeFromCart: (id: string) => void
+    isInCart: (id: string) => boolean
 }
 
 export const createCartSlice: StateCreator<
@@ -15,13 +15,16 @@ export const createCartSlice: StateCreator<
     CartSlice
 > = (set, get) => ({
     cart: { products: [] },
+    isInCart: (id: string) => {
+        let cart = get().cart
+        return cart.products.some((p) => p.item._id === id)
+    },
     removeFromCart: (id: string) => {
         let cart = get().cart
         cart.products = cart.products.filter((p) => p.item._id !== id)
         set(() => ({
             cart: cart
         }))
-
     },
     addToCart: (item: IProduct, quantity: number) => {
         let cart = get().cart

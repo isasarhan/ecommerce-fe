@@ -6,7 +6,7 @@ export interface IProduct {
     salePrice?: number
     currency: Currency
     stock?: number
-    categories?: string[]
+    categories?: IProductCategory[]
     featuredImage?: string
     images?: string[]
     enabled?: boolean
@@ -24,4 +24,11 @@ export enum Currency {
     Lbp = 'LBP',
     Eur = 'EUR',
     Other = 'OTHER',
+}
+
+export interface IProductsResponse{
+    data:IProduct[]
+    page:number
+    pages:number
+    total:number
 }

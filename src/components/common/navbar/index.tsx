@@ -10,7 +10,6 @@ import { Menu } from "lucide-react";
 import { data } from "./data";
 import CartSheet from "../cart/cart-sheet";
 import UserMenu from "./user-menu";
-import { useAppStore } from "@/store";
 
 interface NavbarProps { }
 

@@ -31,15 +31,15 @@ const CartSheet: FC<CartSheetProps> = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
+          <SheetTitle>Your Cart</SheetTitle>
           <SheetDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+            add items into your cart to view on checkout.
           </SheetDescription>
         </SheetHeader>
         <div className="grid flex-1 auto-rows-min gap-6 px-4">
           <div className="grid gap-9">
             {
-              cart.products.map((product) => (
+              cart.products.length === 0? <span>Cart is empty</span>: cart.products.map((product) => (
                 <div key={product.item._id} className='relative'>
                   <div className='grid grid-cols-3 gap-5 '>
                     <Image className='' src={'/images/headphones.jpg'}
@@ -47,7 +47,8 @@ const CartSheet: FC<CartSheetProps> = () => {
                     <div className="col-span-2 ">
                       <div className='h-full flex flex-col justify-center'>
                         <span>{product.item.name}</span>
-                        <span>{product.item.price}</span>
+                        <span>${product.item.price} x {product.quantity}</span>
+                        <span>Total = <span className='text-red-600'>${product.item.price * product.quantity}</span></span>
                       </div>
                     </div>
                   </div>

@@ -19,8 +19,8 @@ export const data:IData[] = [
         url: "/contact"
     },
     {
-        label: "Products",
-        url: "/products"
+        label: "Shop",
+        url: "/shop"
     },
     {
         label: "Cart",

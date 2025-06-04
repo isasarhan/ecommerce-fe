@@ -5,7 +5,7 @@ import { client } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import type { FC } from 'react';
 import * as R from 'ramda'
-import { IProduct, IProductCategory } from "@/types/product";
+import { IProduct, IProductCategory, IProductsResponse } from "@/types/product";
 import HomeModule from "@/modules/home";
 import { GET_PRODUCT_CATEGORIES } from "@/gql/product-category";
 
@@ -16,8 +16,9 @@ const fetchProducts = async () => {
     query: GET_PRODUCTS,
     fetchPolicy: 'no-cache',
   })
-  return R.pathOr([], ['data', 'getProducts'], res) as IProduct[]
+  return R.pathOr({}, ['data', 'getProducts'], res) as IProductsResponse
 }
+
 const fetchProductCategories = async () => {
   const res = await client.query({
     query: GET_PRODUCT_CATEGORIES,
@@ -27,11 +28,11 @@ const fetchProductCategories = async () => {
 }
 
 const Home: FC<HomeProps> = async () => {
-  const products = await fetchProducts()
+  const products = await fetchProducts()  
   const categories = await fetchProductCategories()
 
   return (
-    <HomeModule products={products} categories={categories} />
+    <HomeModule products={products?.data} categories={categories} />
   )
 }
 
