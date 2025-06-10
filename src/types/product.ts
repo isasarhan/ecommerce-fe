@@ -10,6 +10,7 @@ export interface IProduct {
     featuredImage?: string
     images?: string[]
     enabled?: boolean
+    createdAt: Date
 }
 
 export interface IProductCategory {
@@ -26,9 +27,9 @@ export enum Currency {
     Other = 'OTHER',
 }
 
-export interface IProductsResponse{
-    data:IProduct[]
-    page:number
-    pages:number
-    total:number
+export interface IProductsResponse {
+    data: IProduct[]
+    page: number
+    pages: number
+    total: number
 }

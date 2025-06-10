@@ -21,6 +21,7 @@ export const GET_PRODUCTS =  gql`
             price
             salePrice
             stock
+            createdAt
           }
           page
           pages

@@ -15,7 +15,7 @@ interface NavbarProps { }
 
 const Navbar: FC<NavbarProps> = () => {
     return (
-        <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 bg-white">
+        <header className="sticky top-0 z-50 flex h-20 w-full shrink-0 items-center px-4 md:px-6 bg-white ">
             <div>
                 <Logo />
                 <span className="sr-only">Acme Inc</span>

@@ -7,6 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from '@/components/ui/label';
 import { usePathname, useRouter } from 'next/navigation';
 import { Trash } from 'lucide-react';
+import { Select, SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface ProductsSidebarProps {
     categories: IProductCategory[]
@@ -36,31 +38,35 @@ const ProductsSidebar: FC<ProductsSidebarProps> = ({ categories }) => {
         setFilteredCategories([])
     }
     return (
-        <div className='px-4 space-y-3'>
-            <Button
-                onClick={resetChecked}
-                type="button"
-                variant={'ghost'}
-                className='w-full'>
-                <Trash /> Clear All Filters
-            </Button>
-            {categories.map((item, index) => (
-                <div className="flex items-center gap-3 pb-3">
-                    <Checkbox
-                        id={item._id}
-                        checked={filterCategories.includes(item._id)}
-                        onCheckedChange={(checked) => {
-                            const isChecked = !!checked
-                            handleChecked(isChecked, item._id)
-                        }}
-                    />
-                    <Label htmlFor={item._id}>{item.name}</Label>
+        <ScrollArea className='max-h-screen h-full'>
+            <div className='space-y-3 flex justify-center'>
+                <div className='w-3/4'>
+                    <Button
+                        onClick={resetChecked}
+                        type="button"
+                        variant={'ghost'}
+                        className='w-full'>
+                        <Trash /> Clear All Filters
+                    </Button>
+                    <div className=''>
+                        <div className='my-5'>Categories</div>
+                        {categories.map((item, index) => (
+                            <div className="flex items-center gap-3 pb-3">
+                                <Checkbox
+                                    id={item._id}
+                                    checked={filterCategories.includes(item._id)}
+                                    onCheckedChange={(checked) => {
+                                        const isChecked = !!checked
+                                        handleChecked(isChecked, item._id)
+                                    }}
+                                />
+                                <Label htmlFor={item._id}>{item.name}</Label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            ))}
-
-
-        </div>
-
+            </div>
+        </ScrollArea>
     )
 }
 

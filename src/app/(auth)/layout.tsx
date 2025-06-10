@@ -6,7 +6,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="lg:mt-15 mt-10">
+    <div className="lg:my-20 my-10">
       {children}
     </div>
   )

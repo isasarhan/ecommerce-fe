@@ -23,18 +23,46 @@ export const REGISTER = gql`
 `
 
 export const SIGNIN= gql`
-    mutation SignIn($email: String!, $password: String!) {
+        mutation SignIn($email: String!, $password: String!) {
         signIn(email: $email, password: $password) {
+            cart {
+            _id
+            products {
+                item {
+                    _id
+                    currency
+                    enabled
+                    featuredImage
+                    name
+                    price
+                    salePrice
+                    stock
+                }
+                quantity
+                }
+            }
             token
             user {
-            _id
-            email
-            firstName
-            isEnabled
-            lastName
-            phone
-            role
-            userName
+                _id
+                email
+                firstName
+                isEnabled
+                lastName
+                phone
+                role
+                userName
+            }
+            wishlist {
+                _id
+                products {
+                    _id
+                    currency
+                    featuredImage
+                    name
+                    price
+                    salePrice
+                    stock
+                }
             }
         }
     }

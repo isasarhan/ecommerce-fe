@@ -32,7 +32,7 @@ const ShopPage: FC<ShopPageProps> = async ({ searchParams }) => {
     const { filteredCategories } = await searchParams
 
     const [products, categories] = await Promise.all([fetchProducts(filteredCategories), fetchProductCategories()])
-
+    
     return (
         <ShopModule products={products} categories={categories} />
     );

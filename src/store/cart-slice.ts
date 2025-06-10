@@ -6,6 +6,7 @@ export interface CartSlice {
     addToCart: (product: IProduct, quantity: number) => void
     removeFromCart: (id: string) => void
     isInCart: (id: string) => boolean
+    getProduct:(id: string)=> { item: IProduct, quantity: number } | undefined
 }
 
 export const createCartSlice: StateCreator<
@@ -15,6 +16,10 @@ export const createCartSlice: StateCreator<
     CartSlice
 > = (set, get) => ({
     cart: { products: [] },
+    getProduct: (id: string) => {
+        let cart = get().cart
+        return cart.products.find((p) => p.item._id === id)
+    },
     isInCart: (id: string) => {
         let cart = get().cart
         return cart.products.some((p) => p.item._id === id)
@@ -33,12 +38,13 @@ export const createCartSlice: StateCreator<
             cart?.products.push({ item, quantity })
         else {
             cart.products = cart.products.map((p) => {
-                if (p.item._id === item._id)
+                if (p.item._id === item._id) {
+                    const q = quantity !== 1 ?quantity :p.quantity+1 
                     return {
                         item: item,
-                        quantity: quantity
+                        quantity: q
                     }
-
+                }
                 return p
             })
         }
