@@ -3,6 +3,12 @@ import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Providers from "@/providers";
 import { Footer } from "@/components/common/footer";
+import { Roboto  } from 'next/font/google'
+
+const montserrat = Roboto ({
+  subsets: ['greek'],
+  weight: '500',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={montserrat.className}>
       <body>
         <Providers>
           <Navbar />

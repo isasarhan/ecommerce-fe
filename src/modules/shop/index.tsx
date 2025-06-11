@@ -11,14 +11,14 @@ interface ShopModuleProps {
 const ShopModule: FC<ShopModuleProps> = ({ products, categories }) => {
     return (
         <>
-            <div className="grid grid-cols-5 gap-4 relative">
+            <div className="grid grid-cols-4 gap-4 relative">
                 <div>
                     <ProductsSidebar categories={categories} />
                 </div>
-                <div className='col-span-4 m-4'>
-                    <div className='grid grid-cols-4 gap-5'>
+                <div className='col-span-3 m-4'>
+                    <div className='grid grid-cols-3 gap-5'>
                         {products.data.map((product) =>
-                            <ProductCard product={product} />
+                            <ProductCard product={product} key={product._id}/>
                         )}
                     </div>
                 </div>

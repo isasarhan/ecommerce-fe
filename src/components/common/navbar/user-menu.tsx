@@ -7,12 +7,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { BadgePlus, CircleArrowRight, User } from 'lucide-react';
@@ -25,13 +20,13 @@ import { getNameInitials } from '@/lib/name-initials';
 interface UserMenuProps { }
 
 const UserMenu: FC<UserMenuProps> = () => {
-  const { signOut, user } = useUserContext()
+  const { signOut, data } = useUserContext()
   
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size={'icon'}>{
-          user ? getNameInitials(user?.firstName, user?.lastName) : <User />
+          data?.user ? getNameInitials(data?.user?.firstName, data?.user?.lastName) : <User />
         }</Button>
       </DropdownMenuTrigger>
       <IsSignOut>

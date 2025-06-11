@@ -6,14 +6,17 @@ export const GRAPHQL_URL = process.env.NEXT_PUBLIC_GRAPHQL_URL
 
 const authLink = setContext(async (_, { headers }) => {
   let actualToken;
-  if (typeof window !== 'undefined' && Cookies.get('token')) {
-    actualToken = Cookies.get('token');
+  if (typeof window !== 'undefined') {
+    const storedData = Cookies.get('data')
+    
+    if (storedData)
+      actualToken = JSON.parse(storedData)
   }
-
+  
   return {
     headers: {
       ...headers,
-      authorization: actualToken ? `Bearer ${actualToken}` : '',
+      authorization: actualToken?.token ? `Bearer ${actualToken?.token}` : '',
     },
   };
 });

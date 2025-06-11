@@ -6,7 +6,8 @@ export interface IProduct {
     salePrice?: number
     currency: Currency
     stock?: number
-    categories?: IProductCategory[]
+    rating: number
+    categories: IProductCategory[]
     featuredImage?: string
     images?: string[]
     enabled?: boolean

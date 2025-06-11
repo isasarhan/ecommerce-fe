@@ -11,7 +11,7 @@ interface ProductsCarouselProps {
 
 const ProductsCarousel: FC<ProductsCarouselProps> = ({ products }) => {
     return (
-        <div className='p-8'>
+        <div >
             <div className="flex justify-center">
                 <Carousel
                     plugins={[
@@ -27,10 +27,8 @@ const ProductsCarousel: FC<ProductsCarouselProps> = ({ products }) => {
                     <CarouselContent>
                         {products.map((product) => (
                             <CarouselItem key={product._id} className="md:basis-1/2 lg:basis-1/4">
-                                <div className="p-1">
-                                    <div className="">
-                                        <ProductCard product={product} />
-                                    </div>
+                                <div className="m-2">
+                                    <ProductCard product={product} />
                                 </div>
                             </CarouselItem>
                         ))}

@@ -15,6 +15,7 @@ export const GET_PRODUCTS =  gql`
             currency
             description
             enabled
+            rating
             featuredImage
             images
             name
@@ -43,6 +44,7 @@ export const GET_PRODUCT = gql`
     currency
     description
     enabled
+    rating
     featuredImage
     images
     name

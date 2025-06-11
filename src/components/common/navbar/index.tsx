@@ -6,10 +6,11 @@ import type { FC } from 'react';
 import Logo from "../logo";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Heart, Menu } from "lucide-react";
 import { data } from "./data";
-import CartSheet from "../cart/cart-sheet";
+import CartSheet from "./cart-sheet";
 import UserMenu from "./user-menu";
+import WishlistBtn from "./wishlist-button";
 
 interface NavbarProps { }
 
@@ -28,7 +29,6 @@ const Navbar: FC<NavbarProps> = () => {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="p-5">
-
                     <div className="grid gap-2 py-6">
                         {data.map((d, i) => (
                             <Link key={d.label} href={d.url} className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
@@ -38,6 +38,7 @@ const Navbar: FC<NavbarProps> = () => {
                         <div className="flex gap-5">
                             <UserMenu />
                             <CartSheet />
+
                         </div>
                     </div>
                 </SheetContent>
@@ -56,6 +57,7 @@ const Navbar: FC<NavbarProps> = () => {
                 ))}
                 <UserMenu />
                 <CartSheet />
+                <WishlistBtn />
             </nav>
         </header>
     )

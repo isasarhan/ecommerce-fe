@@ -5,6 +5,7 @@ import ShopModule from '@/modules/shop';
 import { IProduct, IProductCategory, IProductsResponse } from '@/types/product';
 import type { FC } from 'react';
 import * as R from 'ramda'
+import ShopTitle from '@/components/common/title/shop-title';
 
 const fetchProducts = async (filteredCategories?: string) => {
     const res = await client.query({
@@ -32,9 +33,19 @@ const ShopPage: FC<ShopPageProps> = async ({ searchParams }) => {
     const { filteredCategories } = await searchParams
 
     const [products, categories] = await Promise.all([fetchProducts(filteredCategories), fetchProductCategories()])
-    
+
     return (
-        <ShopModule products={products} categories={categories} />
+        <>
+            <div className='my-5'>
+                <ShopTitle
+                    segments={[
+                        { label: 'Home', href: '/' },
+                        { label: 'Shop', href: '/shop' },
+                    ]}
+                />
+            </div>
+            <ShopModule products={products} categories={categories} />
+        </>
     );
 }
 

@@ -39,19 +39,20 @@ const ProductsSidebar: FC<ProductsSidebarProps> = ({ categories }) => {
     }
     return (
         <ScrollArea className='max-h-screen h-full'>
-            <div className='space-y-3 flex justify-center'>
-                <div className='w-3/4'>
-                    <Button
-                        onClick={resetChecked}
-                        type="button"
-                        variant={'ghost'}
-                        className='w-full'>
-                        <Trash /> Clear All Filters
-                    </Button>
-                    <div className=''>
-                        <div className='my-5'>Categories</div>
+            <div className='space-y-3 flex '>
+                <div className=''>
+                    {filterCategories.length !== 0 ?
+                        <Button
+                            onClick={resetChecked}
+                            type="button"
+                            variant={'ghost'}
+                            className='cursor-pointer hover:bg-white '>
+                            <Trash /> Clear All Filters
+                        </Button> : <></>}
+                    <div className='space-y-7'>
+                        <div className='my-5 text-2xl'>Categories</div>
                         {categories.map((item, index) => (
-                            <div className="flex items-center gap-3 pb-3">
+                            <div className="flex items-center gap-5">
                                 <Checkbox
                                     id={item._id}
                                     checked={filterCategories.includes(item._id)}
@@ -60,7 +61,7 @@ const ProductsSidebar: FC<ProductsSidebarProps> = ({ categories }) => {
                                         handleChecked(isChecked, item._id)
                                     }}
                                 />
-                                <Label htmlFor={item._id}>{item.name}</Label>
+                                <Label className='' htmlFor={item._id}>{item.name}</Label>
                             </div>
                         ))}
                     </div>
