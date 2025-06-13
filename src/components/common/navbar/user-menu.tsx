@@ -16,12 +16,13 @@ import IsSignIn from '@/components/auth/signin';
 import { useUserContext } from '@/providers/global-data-provider';
 import IsSignOut from '@/components/auth/signout';
 import { getNameInitials } from '@/lib/name-initials';
+import { Role } from '@/types/user';
 
 interface UserMenuProps { }
 
 const UserMenu: FC<UserMenuProps> = () => {
   const { signOut, data } = useUserContext()
-  
+  const profileUrl = data?.user?.role === Role.CUSTOMER ? '/account/profile' : '/admin/dashboard'
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -52,17 +53,16 @@ const UserMenu: FC<UserMenuProps> = () => {
         <DropdownMenuContent className="w-44 mx-8" align="start">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              Profile
-            </DropdownMenuItem>
+            <Link href={'/account/profile'}>
+              <DropdownMenuItem>
+                Profile
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>
               Billing
             </DropdownMenuItem>
             <DropdownMenuItem>
               Settings
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              Keyboard shortcuts
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />

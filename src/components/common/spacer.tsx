@@ -4,9 +4,7 @@ interface SpacerProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const Spacer: FC<SpacerProps> = ({ size = 'sm' }) => {
-  console.log('log');
-  
+const Spacer: FC<SpacerProps> = ({ size = 'sm' }) => {  
   let paddingClass = '';
 
   switch (size) {

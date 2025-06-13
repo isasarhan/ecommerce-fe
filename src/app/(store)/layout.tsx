@@ -1,3 +1,5 @@
+import { Footer } from "@/components/common/footer";
+import Navbar from "@/components/common/navbar";
 
 
 export default function ShopLayout({
@@ -6,8 +8,12 @@ export default function ShopLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="mx-32">
-      {children}
-    </div>
+    <>
+      <Navbar />
+      <div className="mx-32">
+        {children}
+      </div>
+      <Footer />
+    </>
   )
 }

@@ -7,7 +7,7 @@ import { Control } from 'react-hook-form';
 export interface FormInputProps extends React.ComponentProps<"input">{
     control: Control<any>
     name: string
-    title: string
+    title?: string
     placeholder: string
     className?:string
 }

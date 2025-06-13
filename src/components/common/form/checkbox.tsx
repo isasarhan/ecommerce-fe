@@ -18,32 +18,46 @@ interface FormCheckboxProps {
     items?: Item[]
     className?: string
 }
-
-const FormCheckbox: FC<FormCheckboxProps> = ({ defaultValue, items, item, control, name, className, title, placeholder, ...props }) => {
+const FormCheckbox: FC<FormCheckboxProps> = ({
+    item,
+    control,
+    name,
+    className,
+    title,
+    placeholder,
+    ...props
+}) => {
     return (
         <FormField
             control={control}
             name={name}
             render={({ field }) => {
+                const { value = [] } = field;
+
+                const isChecked = value?.includes(item.value);
+
                 return (
-                    <FormItem className={cn(className, "flex flex-row items-center ")}>
-                        <FormControl>
+                    <FormItem className={cn(className, "flex items-center gap-3")}>
+                        <FormControl className='flex justify-center'>
                             <Checkbox
+                                checked={isChecked}
                                 onCheckedChange={(checked) => {
-                                    return checked
-                                        ? field.onChange(item.value)
-                                        : field.onChange(undefined)
+                                    const newValue = checked
+                                        ? [...value, item.value]
+                                        : value.filter((v: any) => v !== item.value);
+                                    field.onChange(newValue);
                                 }}
                             />
                         </FormControl>
-                        <FormLabel className="text-sm font-normal">
+                        <FormLabel >
                             {item.label}
                         </FormLabel>
                     </FormItem>
-                )
+                );
             }}
         />
     );
-}
+};
+
 
 export default FormCheckbox;

@@ -9,7 +9,7 @@ export interface FormTextAreaProps extends React.ComponentProps<"textarea">{
     title: string
     placeholder: string
 }
-const FormTextArea: FC<FormTextAreaProps> = ({ control, name, title, placeholder }) => {
+const FormTextArea: FC<FormTextAreaProps> = ({ control, name, title, placeholder, ...props }) => {
     return (
         <FormField
         control={control}
@@ -18,7 +18,7 @@ const FormTextArea: FC<FormTextAreaProps> = ({ control, name, title, placeholder
                 <FormItem>
                     <FormLabel>{title}</FormLabel>
                     <FormControl>
-                        <Textarea placeholder={placeholder} className="resize-none min-h-[80px]" {...field} />
+                        <Textarea placeholder={placeholder} className="resize-none min-h-[80px]" {...field} {...props}/>
                     </FormControl>
                     <FormMessage />
                 </FormItem>

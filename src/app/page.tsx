@@ -8,6 +8,8 @@ import * as R from 'ramda'
 import { IProduct, IProductCategory, IProductsResponse } from "@/types/product";
 import HomeModule from "@/modules/home";
 import { GET_PRODUCT_CATEGORIES } from "@/gql/product-category";
+import Navbar from "@/components/common/navbar";
+import { Footer } from "@/components/common/footer";
 
 interface HomeProps { }
 
@@ -28,11 +30,15 @@ const fetchProductCategories = async () => {
 }
 
 const Home: FC<HomeProps> = async () => {
-  const products = await fetchProducts()  
+  const products = await fetchProducts()
   const categories = await fetchProductCategories()
 
   return (
-    <HomeModule products={products?.data} categories={categories} />
+    <>
+      <Navbar />
+      <HomeModule products={products?.data} categories={categories} />
+      <Footer />
+    </>
   )
 }
 

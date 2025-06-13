@@ -17,8 +17,6 @@ interface ProductModuleProps {
 }
 
 const ProductModule: FC<ProductModuleProps> = ({ product }) => {
-    console.log('product', product);
-
     const [quantity, setQuantity] = useState('1')
     const { addToCart, isInCart } = useAppStore()
     const isAdded = isInCart(product._id)

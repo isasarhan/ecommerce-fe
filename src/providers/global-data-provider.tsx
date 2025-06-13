@@ -126,6 +126,7 @@ const UserProvider: FC<UserProviderProps> = ({ children }) => {
         Cookies.remove('data')
         setData(null)
         setIsLoggedIn(false)
+        updateCart({products:[]})
         router.refresh()
         return
     }

@@ -4,7 +4,6 @@ import { IProduct, IProductCategory } from '@/types/product';
 import type { FC } from 'react';
 import ProductsCarousel from '@/components/common/products/products-carousel';
 import HomeSlider from './home-slider';
-import IsSignIn from '@/components/auth/signin';
 import SectionTitle from '@/components/common/title/section-title';
 
 interface HomeModuleProps {
@@ -17,11 +16,9 @@ const HomeModule: FC<HomeModuleProps> = ({ products, categories }) => {
         <>
             <HomeSlider />
             <div className='p-8'>
-                <SectionTitle title='Featured Products'/>
+                <SectionTitle title='Featured Products' />
                 <ProductsCarousel products={products} />
-                <IsSignIn>
-                    <Spacer size='md' />
-                </IsSignIn>
+                <Spacer size='md' />
                 <CategoriesCarousel categories={categories} />
                 <Spacer size='md' />
             </div>

@@ -1,4 +1,5 @@
-
+import { Footer } from "@/components/common/footer";
+import Navbar from "@/components/common/navbar";
 
 export default function AuthLayout({
   children,
@@ -6,8 +7,12 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="lg:my-20 my-10">
-      {children}
-    </div>
+    <>
+      <Navbar />
+      <div className="lg:my-20 my-10">
+        {children}
+      </div>
+      <Footer />
+    </>
   )
 }

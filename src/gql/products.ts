@@ -54,3 +54,11 @@ export const GET_PRODUCT = gql`
   }
 }
 `
+
+export const UPDATE_PRODUCT = gql`
+  mutation UpdateProduct($id: ID!, $categories: [ID!], $currency: Currency, $description: String, $enabled: Boolean, $featuredImage: String, $images: [String!], $name: String, $price: Float, $rating: Float, $salePrice: Float, $stock: Int) {
+    updateProduct(id: $id, categories: $categories, currency: $currency, description: $description, enabled: $enabled, featuredImage: $featuredImage, images: $images, name: $name, price: $price, rating: $rating, salePrice: $salePrice, stock: $stock) {
+      _id
+    }
+  }
+`

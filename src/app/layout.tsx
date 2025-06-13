@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/common/navbar";
 import Providers from "@/providers";
-import { Footer } from "@/components/common/footer";
 import { Roboto  } from 'next/font/google'
 
 const montserrat = Roboto ({
@@ -24,11 +22,9 @@ export default function RootLayout({
     <html lang="en" className={montserrat.className}>
       <body>
         <Providers>
-          <Navbar />
-          <main className="p-3">
+          <main >
             {children}
           </main>
-          <Footer/>
         </Providers>
       </body>
     </html>
